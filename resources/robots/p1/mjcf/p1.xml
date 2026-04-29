@@ -1,0 +1,134 @@
+<mujoco model="p1">
+  <option iterations="50" timestep="0.001" solver="PGS" gravity="0 0 -9.81" />
+
+  <!-- 路径对齐：假设 xml 在 mjcf 文件夹，meshes 在同级 p1 文件夹下 -->
+  <compiler angle="radian" meshdir="../meshes" eulerseq="zyx" autolimits="true" />
+
+  <default>
+    <joint limited="true" damping="0.01" armature="0.01" frictionloss="0.01" />
+    <!-- 默认几何体参与碰撞 (contype=1, conaffinity=15) -->
+    <geom condim="4" contype="1" conaffinity="15" friction="0.9 0.2 0.2" solref="0.001 2" />
+    <motor ctrllimited="true" />
+    <equality solref="0.001 2" />
+    <default class="visualgeom">
+      <!-- 视觉专用类：不参与碰撞 -->
+      <geom material="visualgeom" condim="1" contype="0" conaffinity="0" group="1" />
+    </default>
+  </default>
+
+  <asset>
+    <mesh name="pelvis_link" file="pelvis_link.STL" />
+    <mesh name="hip_roll_l_link" file="hip_roll_l_link.STL" />
+    <mesh name="hip_pitch_l_link" file="hip_pitch_l_link.STL" />
+    <mesh name="hip_yaw_l_link" file="hip_yaw_l_link.STL" />
+    <mesh name="knee_pitch_l_link" file="knee_pitch_l_link.STL" />
+    <mesh name="ankle_pitch_l_link" file="ankle_pitch_l_link.STL" />
+    <mesh name="ankle_roll_l_link" file="ankle_roll_l_link.STL" />
+    <mesh name="hip_roll_r_link" file="hip_roll_r_link.STL" />
+    <mesh name="hip_pitch_r_link" file="hip_pitch_r_link.STL" />
+    <mesh name="hip_yaw_r_link" file="hip_yaw_r_link.STL" />
+    <mesh name="knee_pitch_r_link" file="knee_pitch_r_link.STL" />
+    <mesh name="ankle_pitch_r_link" file="ankle_pitch_r_link.STL" />
+    <mesh name="ankle_roll_r_link" file="ankle_roll_r_link.STL" />
+    <texture name="texplane" type="2d" builtin="checker" rgb1=".0 .0 .0" rgb2=".8 .8 .8" width="100" height="100" />
+    <material name="matplane" reflectance="0." texture="texplane" texrepeat="1 1" texuniform="true" />
+    <material name="visualgeom" rgba="0.5 0.9 0.2 1" />
+  </asset>
+
+  <worldbody>
+    <light directional="true" diffuse="0.4 0.4 0.4" specular="0.1 0.1 0.1" pos="0 0 5.0" dir="0 0 -1" />
+    <body name="base" pos="0 0 0.62">
+      <freejoint name="root" />
+      <site name="imu" size="0.01" pos="0 0 0" />
+      <body name="pelvis_link">
+        <inertial pos="-0.008727 0.000362 0.143329" mass="20.1932" diaginertia="0.4849 0.4146 0.1637" />
+        <geom type="mesh" mesh="pelvis_link" class="visualgeom" />
+        <geom type="box" size="0.075 0.15 0.175" pos="0 0 0.2" rgba="0.75 0.75 0.75 1" />
+
+        <!-- 左腿 -->
+        <body name="hip_roll_l_link" pos="-0.0608 0.09 -0.0628" quat="0.9659 0 0.2588 0">
+          <joint name="hip_roll_l_joint" axis="1 0 0" range="-3.14 3.14" />
+          <geom type="mesh" mesh="hip_roll_l_link" class="visualgeom" />
+          <geom type="mesh" mesh="hip_roll_l_link" /> <!-- 物理碰撞体 -->
+          <body name="hip_pitch_l_link" pos="0.071 -0.042 0" quat="0.8718 0 -0.4897 0">
+            <joint name="hip_pitch_l_joint" axis="0 1 0" range="-3.14 3.14" />
+            <geom type="mesh" mesh="hip_pitch_l_link" class="visualgeom" />
+            <geom type="mesh" mesh="hip_pitch_l_link" />
+            <body name="hip_yaw_l_link" pos="0 0.029 -0.065">
+              <joint name="hip_yaw_l_joint" axis="0 0 1" range="-3.14 3.14" />
+              <geom type="mesh" mesh="hip_yaw_l_link" class="visualgeom" />
+              <geom type="mesh" mesh="hip_yaw_l_link" />
+              <body name="knee_pitch_l_link" pos="0 -0.026 -0.143" quat="0.921 0 0.389 0">
+                <joint name="knee_pitch_l_joint" axis="0 1 0" range="-3.14 3.14" />
+                <geom type="mesh" mesh="knee_pitch_l_link" class="visualgeom" />
+                <geom type="cylinder" size="0.03 0.11" pos="0 0.035 -0.17" />
+                <body name="ankle_pitch_l_link" pos="0 0.0107 -0.3049" quat="0.988 0 -0.149 0">
+                  <joint name="ankle_pitch_l_joint" axis="0 1 0" range="-3.14 3.14" />
+                  <geom type="mesh" mesh="ankle_pitch_l_link" class="visualgeom" />
+                  <geom type="mesh" mesh="ankle_pitch_l_link" />
+                  <body name="ankle_roll_l_link" pos="0.0209 0.0244 0">
+                    <joint name="ankle_roll_l_joint" axis="1 0 0" range="-3.14 3.14" />
+                    <geom type="mesh" mesh="ankle_roll_l_link" />
+                  </body>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+        
+        <!-- 右腿 -->
+        <body name="hip_roll_r_link" pos="-0.0617 -0.09 -0.0622" quat="0.9659 0 0.2588 0">
+          <joint name="hip_roll_r_joint" axis="1 0 0" range="-3.14 3.14" />
+          <geom type="mesh" mesh="hip_roll_r_link" class="visualgeom" />
+          <geom type="mesh" mesh="hip_roll_r_link" />
+          <body name="hip_pitch_r_link" pos="0.071 0.042 0" quat="0.8718 0 -0.4897 0">
+            <joint name="hip_pitch_r_joint" axis="0 1 0" range="-3.14 3.14" />
+            <geom type="mesh" mesh="hip_pitch_r_link" class="visualgeom" />
+            <geom type="mesh" mesh="hip_pitch_r_link" />
+            <body name="hip_yaw_r_link" pos="0 -0.029 -0.065">
+              <joint name="hip_yaw_r_joint" axis="0 0 1" range="-3.14 3.14" />
+              <geom type="mesh" mesh="hip_yaw_r_link" class="visualgeom" />
+              <geom type="mesh" mesh="hip_yaw_r_link" />
+              <body name="knee_pitch_r_link" pos="0 0.026 -0.143" quat="0.921 0 0.389 0">
+                <joint name="knee_pitch_r_joint" axis="0 1 0" range="-3.14 3.14" />
+                <geom type="mesh" mesh="knee_pitch_r_link" class="visualgeom" />
+                <geom type="cylinder" size="0.03 0.11" pos="0 -0.035 -0.17" />
+                <body name="ankle_pitch_r_link" pos="0 -0.0107 -0.3049" quat="0.988 0 -0.149 0">
+                  <joint name="ankle_pitch_r_joint" axis="0 1 0" range="-3.14 3.14" />
+                  <geom type="mesh" mesh="ankle_pitch_r_link" class="visualgeom" />
+                  <geom type="mesh" mesh="ankle_pitch_r_link" />
+                  <body name="ankle_roll_r_link" pos="0.0209 -0.0244 0">
+                    <joint name="ankle_roll_r_joint" axis="1 0 0" range="-3.14 3.14" />
+                    <geom type="mesh" mesh="ankle_roll_r_link" />
+                  </body>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+
+  <actuator>
+    <motor name="hip_roll_l" joint="hip_roll_l_joint" gear="1" ctrlrange="-120 120" />
+    <motor name="hip_pitch_l" joint="hip_pitch_l_joint" gear="1" ctrlrange="-120 120" />
+    <motor name="hip_yaw_l" joint="hip_yaw_l_joint" gear="1" ctrlrange="-60 60" />
+    <motor name="knee_pitch_l" joint="knee_pitch_l_joint" gear="1" ctrlrange="-60 60" />
+    <motor name="ankle_pitch_l" joint="ankle_pitch_l_joint" gear="1" ctrlrange="-34 34" />
+    <motor name="ankle_roll_l" joint="ankle_roll_l_joint" gear="1" ctrlrange="-34 34" />
+    <motor name="hip_roll_r" joint="hip_roll_r_joint" gear="1" ctrlrange="-120 120" />
+    <motor name="hip_pitch_r" joint="hip_pitch_r_joint" gear="1" ctrlrange="-120 120" />
+    <motor name="hip_yaw_r" joint="hip_yaw_r_joint" gear="1" ctrlrange="-60 60" />
+    <motor name="knee_pitch_r" joint="knee_pitch_r_joint" gear="1" ctrlrange="-60 60" />
+    <motor name="ankle_pitch_r" joint="ankle_pitch_r_joint" gear="1" ctrlrange="-34 34" />
+    <motor name="ankle_roll_r" joint="ankle_roll_r_joint" gear="1" ctrlrange="-34 34" />
+  </actuator>
+
+  <sensor>
+    <framequat name="orientation" objtype="site" objname="imu" noise="0.001" />
+    <gyro name="angular-velocity" site="imu" noise="0.005" cutoff="34.9" />
+    <accelerometer name="linear-acceleration" site="imu" noise="0.005" />
+    <velocimeter name="linear-velocity" site="imu" noise="0.001" />
+  </sensor>
+</mujoco>

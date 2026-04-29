@@ -1,0 +1,1694 @@
+<!-- <?xml version="1.0" encoding="utf-8"?> -->
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by
+Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="Hua">
+  <mujoco>
+    <compiler meshdir="" balanceinertia="true" discardvisual="false" />
+  </mujoco>
+
+  <!-- <link name="world"></link>
+  <joint name="floating_base_joint" type="floating">
+    <parent link="world" />
+    <child link="base_link">
+  </joint>  -->
+
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="1.80455859700619E-08 -0.0302375842795531 0.0941024439588137"
+        rpy="0 0 0" />
+      <mass
+        value="0.34550813915769" />
+      <inertia
+        ixx="0.000294986709799315"
+        ixy="-2.16054527501346E-09"
+        ixz="5.3306408857965E-10"
+        iyy="0.000283079459968503"
+        iyz="6.32854028872158E-05"
+        izz="0.000477252189359914" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/panda/urdf2MJCF/models/Hua/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/panda/urdf2MJCF/models/Hua/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="waist_yaw">
+    <inertial>
+      <origin
+        xyz="-1.5972196944305E-05 -0.0293159846321194 -0.0791141406491546"
+        rpy="0 0 0" />
+      <mass
+        value="0.85618873766775" />
+      <inertia
+        ixx="0.00174168409664194"
+        ixy="-1.51281882836354E-07"
+        ixz="-1.48893581999069E-07"
+        iyy="0.00325823683035716"
+        iyz="-0.000559258620485101"
+        izz="0.00368873913807928" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/panda/urdf2MJCF/models/Hua/meshes/waist_yaw.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/panda/urdf2MJCF/models/Hua/meshes/waist_yaw.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="waist_yaw_joint"
+    type="fixed">
+    <origin
+      xyz="0 -0.00158447319855881 0.0708000000000022"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="waist_yaw" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="100"
+      velocity="32" />
+  </joint>
+  <link
+    name="left_leg_roll">
+    <inertial>
+      <origin
+        xyz="0.0324159159251559 0.013903201664134 -0.0139031562882574"
+        rpy="0 0 0" />
+      <mass
+        value="0.343573716979357" />
+      <inertia
+        ixx="0.000420611929380275"
+        ixy="-9.51860263496933E-05"
+        ixz="9.47379491451936E-05"
+        iyy="0.000592774023427949"
+        iyz="-7.16538217919954E-05"
+        izz="0.000592774185113039" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/panda/urdf2MJCF/models/Hua/meshes/left_leg_roll.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/panda/urdf2MJCF/models/Hua/meshes/left_leg_roll.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="left_leg_roll_joint"
+    type="revolute">
+    <origin
+      xyz="-0.0899999999999959 -0.075482050807566 -0.129596460717608"
+      rpy="-2.35619449019236 0.52359877559829 1.57079632679486" />
+    <parent
+      link="waist_yaw" />
+    <child
+      link="left_leg_roll" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="43"
+      velocity="12.89" />
+  </joint>
+  <link
+    name="left_leg_pitch">
+    <inertial>
+      <origin
+        xyz="-0.00443165114452158 0.0126893446323292 -0.0298942225728445"
+        rpy="0 0 0" />
+      <mass
+        value="0.302776106248777" />
+      <inertia
+        ixx="0.00037069051458833"
+        ixy="4.32288745222752E-05"
+        ixz="-0.000101840846315199"
+        iyy="0.000370745078310095"
+        iyz="6.95357347873709E-05"
+        izz="0.000236445321245846" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/panda/urdf2MJCF/models/Hua/meshes/left_leg_pitch.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/panda/urdf2MJCF/models/Hua/meshes/left_leg_pitch.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="left_leg_pitch_joint"
+    type="revolute">
+    <origin
+      xyz="0.0759999999999959 0.0247487373415158 -0.0247487373415292"
+      rpy="-2.61799387799153 0.785398163397447 1.57079632679485" />
+    <parent
+      link="left_leg_roll" />
+    <child
+      link="left_leg_pitch" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-1.09"
+      upper="1.78"
+      effort="43"
+      velocity="12.89" />
+  </joint>
+  <link
+    name="left_leg_yaw">
+    <inertial>
+      <origin
+        xyz="0.00209247775715396 -5.52469291029145E-06 -0.0769933046541316"
+        rpy="0 0 0" />
+      <mass
+        value="0.786645536226597" />
+      <inertia
+        ixx="0.00121713098121411"
+        ixy="-4.13685741175296E-07"
+        ixz="8.08893501177155E-05"
+        iyy="0.00104094118915431"
+        iyz="1.20856307164789E-07"
+        izz="0.00101590879309463" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/panda/urdf2MJCF/models/Hua/meshes/left_leg_yaw.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/panda/urdf2MJCF/models/Hua/meshes/left_leg_yaw.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="left_leg_yaw_joint"
+    type="revolute">
+    <origin
+      xyz="-0.0240000000027644 0.0274293252199447 -0.0646194407123744"
+      rpy="0.401425727958699 0 0" />
+    <parent
+      link="left_leg_pitch" />
+    <child
+      link="left_leg_yaw" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="20"
+      velocity="16.02" />
+  </joint>
+  <link
+    name="left_knee">
+    <inertial>
+      <origin
+        xyz="-0.0255290981687071 0.000345333666128878 -0.139672269437514"
+        rpy="0 0 0" />
+      <mass
+        value="1.35498550753233" />
+      <inertia
+        ixx="0.00436519597832228"
+        ixy="-7.99611534083305E-06"
+        ixz="-0.000540431920492232"
+        iyy="0.0044603932546625"
+        iyz="-2.91631237813013E-05"
+        izz="0.000679766032037649" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/panda/urdf2MJCF/models/Hua/meshes/left_knee.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="-0.017 0.005 -0.15" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.015" length="0.15"/>
+      </geometry>
+    </collision>
+    <!-- <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/panda/urdf2MJCF/models/Hua/meshes/left_knee.STL" />
+      </geometry>
+    </collision> -->
+  </link>
+  <joint
+    name="left_knee_joint"
+    type="revolute">
+    <origin
+      xyz="0.0188 0 -0.1358"
+      rpy="-0.709999939711286 0 0" />
+    <parent
+      link="left_leg_yaw" />
+    <child
+      link="left_knee" />
+    <axis
+      xyz="-1 0 0" />
+    <limit
+      lower="-1.43"
+      upper="1.57"
+      effort="20"
+      velocity="16.02" />
+  </joint>
+  <link
+    name="left_ankle_pitch">
+    <inertial>
+      <origin
+        xyz="-9.0205620750794E-16 1.0094355906709E-12 3.00870439673417E-14"
+        rpy="0 0 0" />
+      <mass
+        value="0.0407789866179951" />
+      <inertia
+        ixx="3.69697392610955E-06"
+        ixy="-3.44270873514275E-22"
+        ixz="-1.15667827059762E-21"
+        iyy="4.04151613931574E-06"
+        iyz="-2.09585429262315E-09"
+        izz="5.54255730543628E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/panda/urdf2MJCF/models/Hua/meshes/left_ankle_pitch.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/panda/urdf2MJCF/models/Hua/meshes/left_ankle_pitch.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="left_ankle_pitch_joint"
+    type="revolute">
+    <origin
+      xyz="-0.029899999999999 0 -0.304940000000003"
+      rpy="0.308574211752587 0 0" />
+    <parent
+      link="left_knee" />
+    <child
+      link="left_ankle_pitch" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-0.75"
+      upper="0.51"
+      effort="10.5"
+      velocity="8.69" />
+  </joint>
+  <link
+    name="left_ankle_roll">
+    <inertial>
+      <origin
+        xyz="-2.6033366677114E-06 0.00110021688872164 -0.0244337511441741"
+        rpy="0 0 0" />
+      <mass
+        value="0.654588443147418" />
+      <inertia
+        ixx="0.00119052358094622"
+        ixy="8.24911108405071E-08"
+        ixz="2.08084261747932E-09"
+        iyy="0.000600133711791905"
+        iyz="7.01827956733735E-07"
+        izz="0.00175072154957559" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/panda/urdf2MJCF/models/Hua/meshes/left_ankle_roll.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/panda/urdf2MJCF/models/Hua/meshes/left_ankle_roll.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="left_ankle_roll_joint"
+    type="revolute">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="left_ankle_pitch" />
+    <child
+      link="left_ankle_roll" />
+    <axis
+      xyz="0 -0.999999025224415 -0.0013962629479225" />
+    <limit
+      lower="-0.4"
+      upper="0.4"
+      effort="10.5"
+      velocity="8.69" />
+  </joint>
+  <link
+    name="right_leg_roll">
+    <inertial>
+      <origin
+        xyz="0.0324159164417903 -0.0139032009672306 0.0139031569996455"
+        rpy="0 0 0" />
+      <mass
+        value="0.3435737356437" />
+      <inertia
+        ixx="0.000420611973732659"
+        ixy="9.51860316691164E-05"
+        ixz="-9.47379436901078E-05"
+        iyy="0.000592774054923076"
+        iyz="-7.1653844190551E-05"
+        izz="0.00059277420289055" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/panda/urdf2MJCF/models/Hua/meshes/right_leg_roll.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/panda/urdf2MJCF/models/Hua/meshes/right_leg_roll.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_leg_roll_joint"
+    type="revolute">
+    <origin
+      xyz="0.090000000000004 -0.0754820508075705 -0.129596460717605"
+      rpy="-2.35619449019236 0.52359877559829 1.57079632679486" />
+    <parent
+      link="waist_yaw" />
+    <child
+      link="right_leg_roll" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="43"
+      velocity="12.89" />
+  </joint>
+  <link
+    name="right_leg_pitch">
+    <inertial>
+      <origin
+        xyz="0.00443165113897539 0.0126893446323306 -0.0298942225728281"
+        rpy="0 0 0" />
+      <mass
+        value="0.302776106248777" />
+      <inertia
+        ixx="0.000370690514588323"
+        ixy="-4.32288745222769E-05"
+        ixz="0.000101840846315204"
+        iyy="0.000370745078310097"
+        iyz="6.95357347873679E-05"
+        izz="0.00023644532124585" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/panda/urdf2MJCF/models/Hua/meshes/right_leg_pitch.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/panda/urdf2MJCF/models/Hua/meshes/right_leg_pitch.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_leg_pitch_joint"
+    type="revolute">
+    <origin
+      xyz="0.075999999999997 -0.0247487373415237 0.0247487373415275"
+      rpy="-2.61799387799153 0.785398163397447 1.57079632679485" />
+    <parent
+      link="right_leg_roll" />
+    <child
+      link="right_leg_pitch" />
+    <axis
+      xyz="-1 0 0" />
+    <limit
+      lower="-1.78"
+      upper="1.09"
+      effort="43"
+      velocity="12.89" />
+  </joint>
+  <link
+    name="right_leg_yaw">
+    <inertial>
+      <origin
+        xyz="-0.00212725923096942 -2.49188911172205E-09 -0.0769929424029223"
+        rpy="0 0 0" />
+      <mass
+        value="0.786654003146498" />
+      <inertia
+        ixx="0.00121712973013338"
+        ixy="-3.47270489696195E-07"
+        ixz="-8.17471315116632E-05"
+        iyy="0.0010409728470672"
+        iyz="-2.48084579665864E-07"
+        izz="0.00101587583219007" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/panda/urdf2MJCF/models/Hua/meshes/right_leg_yaw.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/panda/urdf2MJCF/models/Hua/meshes/right_leg_yaw.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_leg_yaw_joint"
+    type="revolute">
+    <origin
+      xyz="0.0239999999972192 0.0274293252199456 -0.0646194407123576"
+      rpy="0.4014257279587 0 0" />
+    <parent
+      link="right_leg_pitch" />
+    <child
+      link="right_leg_yaw" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="20"
+      velocity="16.02" />
+  </joint>
+  <link
+    name="right_knee">
+    <inertial>
+      <origin
+        xyz="0.0254549506465807 0.000373451452596596 -0.13970549480331"
+        rpy="0 0 0" />
+      <mass
+        value="1.35498396420902" />
+      <inertia
+        ixx="0.00436487202112095"
+        ixy="1.98002415446517E-05"
+        ixz="0.000541072387909073"
+        iyy="0.00446040834346172"
+        iyz="-3.12099779294145E-05"
+        izz="0.00068009054117113" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/panda/urdf2MJCF/models/Hua/meshes/right_knee.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0.017 0.005 -0.15" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.015" length="0.15"/>
+      </geometry>
+    </collision>
+    <!-- <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/panda/urdf2MJCF/models/Hua/meshes/right_knee.STL" />
+      </geometry>
+    </collision> -->
+  </link>
+  <joint
+    name="right_knee_joint"
+    type="revolute">
+    <origin
+      xyz="-0.0188000000000001 0 -0.1358"
+      rpy="-0.709999939711287 0 0" />
+    <parent
+      link="right_leg_yaw" />
+    <child
+      link="right_knee" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-1.43"
+      upper="1.57"
+      effort="20"
+      velocity="16.02" />
+  </joint>
+  <link
+    name="right_ankle_pitch">
+    <inertial>
+      <origin
+        xyz="5.96744875736022E-16 1.00443958706009E-12 3.48610029732299E-14"
+        rpy="0 0 0" />
+      <mass
+        value="0.0407789866179952" />
+      <inertia
+        ixx="3.69697392610956E-06"
+        ixy="8.18405638287283E-21"
+        ixz="-4.2897633627577E-20"
+        iyy="4.04151613931573E-06"
+        iyz="-2.09585429262345E-09"
+        izz="5.54255730543627E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/panda/urdf2MJCF/models/Hua/meshes/right_ankle_pitch.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/panda/urdf2MJCF/models/Hua/meshes/right_ankle_pitch.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_ankle_pitch_joint"
+    type="revolute">
+    <origin
+      xyz="0.029900000000007 0 -0.304940000000006"
+      rpy="0.308574211752587 0 0" />
+    <parent
+      link="right_knee" />
+    <child
+      link="right_ankle_pitch" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-0.75"
+      upper="0.51"
+      effort="10.5"
+      velocity="8.69" />
+  </joint>
+  <link
+    name="right_ankle_roll_joint">
+    <inertial>
+      <origin
+        xyz="-2.60378182677379E-06 0.0011002178419805 -0.0244337515391634"
+        rpy="0 0 0" />
+      <mass
+        value="0.654588470273373" />
+      <inertia
+        ixx="0.00119052357567187"
+        ixy="8.24920164052995E-08"
+        ixz="2.08009697529074E-09"
+        iyy="0.000600133749122771"
+        iyz="7.01823274130874E-07"
+        izz="0.00175072158513957" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/panda/urdf2MJCF/models/Hua/meshes/right_ankle_roll_joint.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/panda/urdf2MJCF/models/Hua/meshes/right_ankle_roll_joint.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_ankle_roll_joint"
+    type="revolute">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="right_ankle_pitch" />
+    <child
+      link="right_ankle_roll_joint" />
+    <axis
+      xyz="0 -0.999999025224415 -0.0013962629479225" />
+    <limit
+      lower="-0.4"
+      upper="0.4"
+      effort="10.5"
+      velocity="8.69" />
+  </joint>
+  <link
+    name="body_roll">
+    <inertial>
+      <origin
+        xyz="-2.77539464039049E-12 -4.64794869259322E-13 5.86877768604666E-13"
+        rpy="0 0 0" />
+      <mass
+        value="0.0407789866179951" />
+      <inertia
+        ixx="3.20587637111268E-06"
+        ixy="8.76727174842452E-21"
+        ixz="-2.03243516832115E-21"
+        iyy="4.53261076794555E-06"
+        iyz="1.02903029280512E-18"
+        izz="5.54256023179969E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/panda/urdf2MJCF/models/Hua/meshes/body_roll.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/panda/urdf2MJCF/models/Hua/meshes/body_roll.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="body_roll_joint"
+    type="fixed">
+    <origin
+      xyz="0 -0.00158447319855947 0.110000000000003"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="body_roll" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-0.7"
+      upper="0.7"
+      effort="100"
+      velocity="1" />
+  </joint>
+  <link
+    name="body_pitch">
+    <inertial>
+      <origin
+        xyz="-2.01434574340473E-05 -0.00233299253473686 0.15586105689281"
+        rpy="0 0 0" />
+      <mass
+        value="4.08853612538708" />
+      <inertia
+        ixx="0.00542132500186399"
+        ixy="-4.67142528720651E-08"
+        ixz="-2.39247041085698E-07"
+        iyy="0.014466642406765"
+        iyz="-2.84377700213521E-07"
+        izz="0.0143277309040381" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/panda/urdf2MJCF/models/Hua/meshes/body_pitch.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/panda/urdf2MJCF/models/Hua/meshes/body_pitch.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="body_pitch_joint"
+    type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="body_roll" />
+    <child
+      link="body_pitch" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-0.4"
+      upper="0.4"
+      effort="100"
+      velocity="1" />
+  </joint>
+  <link
+    name="neck_base_yaw">
+    <inertial>
+      <origin
+        xyz="0.00246007094762883 -0.000165740127493985 0.0881742679041753"
+        rpy="0 0 0" />
+      <mass
+        value="0.43169317166591" />
+      <inertia
+        ixx="0.000150668930614392"
+        ixy="-5.87688050915407E-07"
+        ixz="-3.01047364459321E-08"
+        iyy="0.000177271291097111"
+        iyz="-1.68384316622874E-07"
+        izz="0.000178372588733824" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/panda/urdf2MJCF/models/Hua/meshes/neck_base_yaw.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/panda/urdf2MJCF/models/Hua/meshes/neck_base_yaw.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="neck_base_yaw_joint"
+    type="fixed">
+    <origin
+      xyz="0 0 0.2485"
+      rpy="0 0 0" />
+    <parent
+      link="body_pitch" />
+    <child
+      link="neck_base_yaw" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="100"
+      velocity="1" />
+  </joint>
+  <link
+    name="left_shoulder_pitch">
+    <inertial>
+      <origin
+        xyz="-0.0549151219288999 -0.0100544745752529 0.000369817872860792"
+        rpy="0 0 0" />
+      <mass
+        value="0.602071913298147" />
+      <inertia
+        ixx="0.000322556112708066"
+        ixy="-3.15518321749986E-06"
+        ixz="-4.05951110189898E-07"
+        iyy="0.000402554349219953"
+        iyz="-4.71830632017667E-06"
+        izz="0.000345235246684802" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/panda/urdf2MJCF/models/Hua/meshes/left_shoulder_pitch.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/panda/urdf2MJCF/models/Hua/meshes/left_shoulder_pitch.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="left_shoulder_pitch_joint"
+    type="fixed">
+    <origin
+      xyz="-0.122999999977962 0 0.214999999999994"
+      rpy="0 0 0" />
+    <parent
+      link="body_pitch" />
+    <child
+      link="left_shoulder_pitch" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="100"
+      velocity="1" />
+  </joint>
+  <link
+    name="left_shoulder_roll">
+    <inertial>
+      <origin
+        xyz="0.000401319421279606 0.0261531705170459 -0.0612944204543082"
+        rpy="0 0 0" />
+      <mass
+        value="0.679706108400173" />
+      <inertia
+        ixx="0.000479548884823254"
+        ixy="2.58997896398776E-07"
+        ixz="-5.66378764800398E-06"
+        iyy="0.0004806467478804"
+        iyz="4.3724153329716E-05"
+        izz="0.000441333980161071" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/panda/urdf2MJCF/models/Hua/meshes/left_shoulder_roll.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/panda/urdf2MJCF/models/Hua/meshes/left_shoulder_roll.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="left_shoulder_roll_joint"
+    type="fixed">
+    <origin
+      xyz="-0.0639999999999917 -0.0360000000000115 0"
+      rpy="0 0 0" />
+    <parent
+      link="left_shoulder_pitch" />
+    <child
+      link="left_shoulder_roll" />
+    <axis
+      xyz="0 -1 0" />
+    <limit
+      lower="-3.22"
+      upper="0.08"
+      effort="100"
+      velocity="1" />
+  </joint>
+  <link
+    name="left_arm_yaw">
+    <inertial>
+      <origin
+        xyz="-0.0344994920554985 -2.71713207489199E-13 -0.0307904604407926"
+        rpy="0 0 0" />
+      <mass
+        value="0.256768568907474" />
+      <inertia
+        ixx="0.000267699336418193"
+        ixy="3.04577283618258E-15"
+        ixz="-0.000114399157810505"
+        iyy="0.00037060980651779"
+        iyz="1.73421203472752E-15"
+        izz="0.000257876839350053" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/panda/urdf2MJCF/models/Hua/meshes/left_arm_yaw.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/panda/urdf2MJCF/models/Hua/meshes/left_arm_yaw.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="left_arm_yaw_joint"
+    type="fixed">
+    <origin
+      xyz="0 0.036000000000007 -0.0980000000000009"
+      rpy="0 0 0" />
+    <parent
+      link="left_shoulder_roll" />
+    <child
+      link="left_arm_yaw" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="100"
+      velocity="1" />
+  </joint>
+  <link
+    name="left_elbow_pitch">
+    <inertial>
+      <origin
+        xyz="0.0242974057203532 -0.000526783197100422 -0.00657699819615576"
+        rpy="0 0 0" />
+      <mass
+        value="0.5178207345355" />
+      <inertia
+        ixx="0.000326823416275458"
+        ixy="5.66378764800427E-06"
+        ixz="1.75608049459899E-05"
+        iyy="0.000299884999990418"
+        iyz="2.58997896399352E-07"
+        izz="0.0002580037080611" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/panda/urdf2MJCF/models/Hua/meshes/left_elbow_pitch.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/panda/urdf2MJCF/models/Hua/meshes/left_elbow_pitch.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="left_elbow_pitch_joint"
+    type="fixed">
+    <origin
+      xyz="-0.0459999999986074 0 -0.0659999999999984"
+      rpy="0 0 0" />
+    <parent
+      link="left_arm_yaw" />
+    <child
+      link="left_elbow_pitch" />
+    <axis
+      xyz="-1 0 0" />
+    <limit
+      lower="-2.1"
+      upper="2.1"
+      effort="100"
+      velocity="1" />
+  </joint>
+  <link
+    name="left_elbow_yaw">
+    <inertial>
+      <origin
+        xyz="0.00525277342367092 3.15118708904549E-09 -0.0519877210302014"
+        rpy="0 0 0" />
+      <mass
+        value="0.233826475925092" />
+      <inertia
+        ixx="0.000294406099334708"
+        ixy="5.84849540427856E-08"
+        ixz="3.82561662706319E-11"
+        iyy="0.000211706156300933"
+        iyz="5.84810771162109E-08"
+        izz="0.00017644288078122" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/panda/urdf2MJCF/models/Hua/meshes/left_elbow_yaw.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/panda/urdf2MJCF/models/Hua/meshes/left_elbow_yaw.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="left_elbow_yaw_joint"
+    type="fixed">
+    <origin
+      xyz="0.0430000000000002 0 -0.0665000000000002"
+      rpy="0 0 0" />
+    <parent
+      link="left_elbow_pitch" />
+    <child
+      link="left_elbow_yaw" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="100"
+      velocity="1" />
+  </joint>
+  <link
+    name="left_wrist_roll">
+    <inertial>
+      <origin
+        xyz="0.00266677840813909 7.82707232360735E-15 -0.0255270569824787"
+        rpy="0 0 0" />
+      <mass
+        value="0.18814853551736" />
+      <inertia
+        ixx="0.000206389876875441"
+        ixy="4.34427513263631E-19"
+        ixz="-4.3874188156648E-05"
+        iyy="0.000206132974546275"
+        iyz="2.22331119664525E-19"
+        izz="0.000128921763978" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/panda/urdf2MJCF/models/Hua/meshes/left_wrist_roll.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/panda/urdf2MJCF/models/Hua/meshes/left_wrist_roll.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="left_wrist_roll_joint"
+    type="fixed">
+    <origin
+      xyz="0.0160000000000041 0 -0.096229619598258"
+      rpy="0 0 0" />
+    <parent
+      link="left_elbow_yaw" />
+    <child
+      link="left_wrist_roll" />
+    <axis
+      xyz="-1 0 0" />
+    <limit
+      lower="-1.96"
+      upper="1.96"
+      effort="100"
+      velocity="1" />
+  </joint>
+  <link
+    name="right_shoulder_pitch">
+    <inertial>
+      <origin
+        xyz="0.0549932338368724 -0.0100544590375346 0.000414915803955501"
+        rpy="0 0 0" />
+      <mass
+        value="0.602071913298147" />
+      <inertia
+        ixx="0.000322107515192448"
+        ixy="2.50860443050457E-06"
+        ixz="6.64949006589229E-07"
+        iyy="0.000402554349219953"
+        iyz="-5.09166164944748E-06"
+        izz="0.000345683844200419" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/panda/urdf2MJCF/models/Hua/meshes/right_shoulder_pitch.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/panda/urdf2MJCF/models/Hua/meshes/right_shoulder_pitch.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_shoulder_pitch_joint"
+    type="fixed">
+    <origin
+      xyz="0.123000000022055 0 0.214999999999994"
+      rpy="0 0 0" />
+    <parent
+      link="body_pitch" />
+    <child
+      link="right_shoulder_pitch" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="100"
+      velocity="1" />
+  </joint>
+  <link
+    name="right_shoulder_roll">
+    <inertial>
+      <origin
+        xyz="-0.000401319421278773 0.026073276582522 -0.061294420454308"
+        rpy="0 0 0" />
+      <mass
+        value="0.679706108400173" />
+      <inertia
+        ixx="0.000479548884823254"
+        ixy="2.58997896398762E-07"
+        ixz="5.66378764800468E-06"
+        iyy="0.0004806467478804"
+        iyz="4.44708130380455E-05"
+        izz="0.000441333980161071" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/panda/urdf2MJCF/models/Hua/meshes/right_shoulder_roll.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/panda/urdf2MJCF/models/Hua/meshes/right_shoulder_roll.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_shoulder_roll_joint"
+    type="fixed">
+    <origin
+      xyz="0.064 -0.036 0"
+      rpy="0 0 0" />
+    <parent
+      link="right_shoulder_pitch" />
+    <child
+      link="right_shoulder_roll" />
+    <axis
+      xyz="0 -1 0" />
+    <limit
+      lower="-0.08"
+      upper="3.22"
+      effort="100"
+      velocity="1" />
+  </joint>
+  <link
+    name="right_arm_yaw">
+    <inertial>
+      <origin
+        xyz="0.0344994920554959 -5.01994279478168E-13 -0.0307904604407921"
+        rpy="0 0 0" />
+      <mass
+        value="0.256768568907474" />
+      <inertia
+        ixx="0.000267699336418193"
+        ixy="3.04542004145878E-15"
+        ixz="0.000114399157810505"
+        iyy="0.00037060980651779"
+        iyz="-1.73383418916039E-15"
+        izz="0.000257876839350053" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/panda/urdf2MJCF/models/Hua/meshes/right_arm_yaw.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/panda/urdf2MJCF/models/Hua/meshes/right_arm_yaw.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_arm_yaw_joint"
+    type="fixed">
+    <origin
+      xyz="0 0.036 -0.098"
+      rpy="0 0 0" />
+    <parent
+      link="right_shoulder_roll" />
+    <child
+      link="right_arm_yaw" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="100"
+      velocity="1" />
+  </joint>
+  <link
+    name="right_elbow_pitch">
+    <inertial>
+      <origin
+        xyz="-0.0242974057203581 -0.000526783197097778 -0.00647212716319402"
+        rpy="0 0 0" />
+      <mass
+        value="0.517820734535501" />
+      <inertia
+        ixx="0.000326823416275458"
+        ixy="-5.66378764800444E-06"
+        ixz="-1.68141452376605E-05"
+        iyy="0.000299884999990418"
+        iyz="-2.58997896399175E-07"
+        izz="0.0002580037080611" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/panda/urdf2MJCF/models/Hua/meshes/right_elbow_pitch.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/panda/urdf2MJCF/models/Hua/meshes/right_elbow_pitch.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_elbow_pitch_joint"
+    type="fixed">
+    <origin
+      xyz="0.0459999999986073 0 -0.0659999999999983"
+      rpy="0 0 0" />
+    <parent
+      link="right_arm_yaw" />
+    <child
+      link="right_elbow_pitch" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-2.1"
+      upper="2.1"
+      effort="100"
+      velocity="1" />
+  </joint>
+  <link
+    name="right_elbow_yaw">
+    <inertial>
+      <origin
+        xyz="-0.00525277578325453 3.09038146462104E-09 -0.0519877210302014"
+        rpy="0 0 0" />
+      <mass
+        value="0.233826475925092" />
+      <inertia
+        ixx="0.000294406099334708"
+        ixy="5.84849540438154E-08"
+        ixz="3.82561657871229E-11"
+        iyy="0.000211706156300933"
+        iyz="-5.84635226601479E-08"
+        izz="0.000176442880781219" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/panda/urdf2MJCF/models/Hua/meshes/right_elbow_yaw.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/panda/urdf2MJCF/models/Hua/meshes/right_elbow_yaw.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_elbow_yaw_joint"
+    type="fixed">
+    <origin
+      xyz="-0.042999999843512 0 -0.0665"
+      rpy="0 0 0" />
+    <parent
+      link="right_elbow_pitch" />
+    <child
+      link="right_elbow_yaw" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="100"
+      velocity="1" />
+  </joint>
+  <link
+    name="right_wrist_roll">
+    <inertial>
+      <origin
+        xyz="0.00266677840813906 3.07568970292493E-11 0.0255270568174326"
+        rpy="0 0 0" />
+      <mass
+        value="0.18814853551736" />
+      <inertia
+        ixx="0.000206389876875441"
+        ixy="-5.79323995935251E-19"
+        ixz="4.3874188156648E-05"
+        iyy="0.000206132974546276"
+        iyz="5.34393044680133E-19"
+        izz="0.000128921763978001" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/panda/urdf2MJCF/models/Hua/meshes/right_wrist_roll.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="/home/panda/urdf2MJCF/models/Hua/meshes/right_wrist_roll.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_wrist_roll_joint"
+    type="fixed">
+    <origin
+      xyz="-0.0160000001564923 0 -0.0962296197633035"
+      rpy="3.14159265358979 0 3.14159265358979" />
+    <parent
+      link="right_elbow_yaw" />
+    <child
+      link="right_wrist_roll" />
+    <axis
+      xyz="-1 0 0" />
+    <limit
+      lower="-1.96"
+      upper="1.96"
+      effort="100"
+      velocity="1" />
+  </joint>
+</robot>
