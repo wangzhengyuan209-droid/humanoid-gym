@@ -119,20 +119,20 @@ class P1Cfg(LeggedRobotCfg):
         # PD Drive parameters:
         # p1_config.py 中的 control 类
         stiffness = {
-            'hip_roll': 200.0,   # 匹配 hip_roll_l_joint 和 hip_roll_r_joint
-            'hip_pitch': 350.0,  # 匹配 hip_pitch_l_joint 和 hip_pitch_r_joint
-            'hip_yaw': 200.0,    # 匹配 hip_yaw_l_joint 和 hip_yaw_r_joint
-            'knee_pitch': 350.0, # 匹配 knee_pitch_l_joint 和 knee_pitch_r_joint
-            'ankle_pitch': 20.0, # 匹配 ankle_pitch_l_joint 和 ankle_pitch_r_joint
-            'ankle_roll': 20.0   # 匹配 ankle_roll_l_joint 和 ankle_roll_r_joint
+            'hip_roll': 200.0,      # 不变
+            'hip_pitch': 250.0,     # 调低
+            'hip_yaw': 200.0,       # 不变
+            'knee_pitch': 250.0,    # 调低
+            'ankle_pitch': 20.0,    # 不变
+            'ankle_roll': 20.0      # 不变
         }
         damping = {
-            'hip_roll': 10, 
-            'hip_pitch': 10, 
-            'hip_yaw': 10, 
-            'knee_pitch': 10, 
-            'ankle_pitch': 1, 
-            'ankle_roll': 1
+            'hip_roll': 10.0,
+            'hip_pitch': 10.0,
+            'hip_yaw': 10.0,
+            'knee_pitch': 10.0,
+            'ankle_pitch': 1.0,
+            'ankle_roll': 1.0
         }
         # action scale: target angle = actionScale * action + defaultAngle
         action_scale = 0.25

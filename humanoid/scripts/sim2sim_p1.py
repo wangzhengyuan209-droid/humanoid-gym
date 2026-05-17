@@ -109,6 +109,43 @@ def run_mujoco(policy, cfg):
 
     count_lowlevel = 0
 
+    # Warmup: fill observation history with real data before running policy
+    for _ in range(cfg.env.frame_stack * cfg.sim_config.decimation):
+        q, dq, quat, v, omega, gvec = get_obs(data)
+        q_joints = q[-cfg.env.num_actions:]
+        dq_joints = dq[-cfg.env.num_actions:]
+
+        if count_lowlevel % cfg.sim_config.decimation == 0:
+            obs = np.zeros([1, cfg.env.num_single_obs], dtype=np.float32)
+            eu_ang = quaternion_to_euler_array(quat)
+            eu_ang[eu_ang > math.pi] -= 2 * math.pi
+
+            obs[0, 0] = math.sin(2 * math.pi * count_lowlevel * cfg.sim_config.dt / 0.4)
+            obs[0, 1] = math.cos(2 * math.pi * count_lowlevel * cfg.sim_config.dt / 0.4)
+            obs[0, 2] = cmd.vx * cfg.normalization.obs_scales.lin_vel
+            obs[0, 3] = cmd.vy * cfg.normalization.obs_scales.lin_vel
+            obs[0, 4] = cmd.dyaw * cfg.normalization.obs_scales.ang_vel
+            obs[0, 5:17] = q_joints * cfg.normalization.obs_scales.dof_pos
+            obs[0, 17:29] = dq_joints * cfg.normalization.obs_scales.dof_vel
+            obs[0, 29:41] = action  # still zero during warmup
+            obs[0, 41:44] = omega
+            obs[0, 44:47] = eu_ang
+
+            obs = np.clip(obs, -cfg.normalization.clip_observations, cfg.normalization.clip_observations)
+
+            hist_obs.append(obs)
+            hist_obs.popleft()
+
+        # Gentle PD to hold default pose during warmup
+        tau = pd_control(np.zeros(cfg.env.num_actions), q_joints,
+                         cfg.robot_config.kps,
+                         np.zeros(cfg.env.num_actions), dq_joints,
+                         cfg.robot_config.kds)
+        data.ctrl = np.clip(tau, -cfg.robot_config.tau_limit, cfg.robot_config.tau_limit)
+
+        mujoco.mj_step(model, data)
+        count_lowlevel += 1
+
 
     for _ in tqdm(range(int(cfg.sim_config.sim_duration / cfg.sim_config.dt)), desc="Simulating..."):
 
@@ -180,7 +217,7 @@ if __name__ == '__main__':
             decimation = 10
 
         class robot_config:
-            kps = np.array([200, 350, 200, 350, 20, 20, 200, 350, 200, 350, 20, 20], dtype=np.double)
+            kps = np.array([200, 250, 200, 250, 20, 20, 200, 250, 200, 250, 20, 20], dtype=np.double)
             kds = np.array([10, 10, 10, 10, 1, 1, 10, 10, 10, 10, 1, 1], dtype=np.double)
             tau_limit = 200. * np.ones(12, dtype=np.double)
 

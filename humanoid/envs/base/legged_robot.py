@@ -94,7 +94,6 @@ class LeggedRobot(BaseTask):
         for _ in range(self.cfg.control.decimation):
             self.torques = self._compute_torques(self.actions).view(self.torques.shape)
             self.gym.set_dof_actuation_force_tensor(self.sim, gymtorch.unwrap_tensor(self.torques))
-
             self.gym.simulate(self.sim)
             if self.device == 'cpu':
                 self.gym.fetch_results(self.sim, True)
